@@ -131,14 +131,14 @@ export const TransactionModal = ({ address, tAmount, currency }) => {
     const sendToBackend = async (txHash) => {
         // Send the data to the backend API
         const formattedAmount = Number(tAmount).toFixed(18);
-        const token = "10000";
+        const token = 10000;
         const jsonData = {
             wallet_address: address,
             name: name,
             email: email,
             currency: currency,
             tx_hash: txHash,
-            amount: formattedAmount,
+            amount: tAmount,
             allocated_tokens: token,
         };
         console.log("sendToBackend",jsonData);
