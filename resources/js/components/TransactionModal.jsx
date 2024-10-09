@@ -131,7 +131,7 @@ export const TransactionModal = ({ address, tAmount, currency }) => {
     const sendToBackend = async (txHash) => {
         // Send the data to the backend API
         const formattedAmount = Number(tAmount).toFixed(18);
-        const token = 10000;
+        const token = "10000";
         const jsonData = {
             wallet_address: address,
             name: name,
