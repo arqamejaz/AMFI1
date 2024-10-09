@@ -11,8 +11,8 @@ export const TransactionModal = ({ address, tAmount, currency }) => {
     const [transactionHash, setTransactionHash] = useState(null);
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
-    const [amount, setAmount] = useState(tAmount);
-    const [token, setToken] = useState(0);
+    // const [amount, setAmount] = useState(tAmount);
+    // const [token, setToken] = useState(0);
     const [currentBalance, setCurrentBalance] = useState(0);
     const [errorMessage, setErrorMessage] = useState(0);
 
@@ -100,8 +100,8 @@ export const TransactionModal = ({ address, tAmount, currency }) => {
 
             console.log("Transaction Hash:", tx.hash);
             setTransactionHash(tx.hash);
-            setAmount(formattedAmount);
-            setToken(10000);
+            // setAmount(formattedAmount);
+            // setToken(10000);
             if (tx.hash) {
                 alert("Transaction Successfull");
                 sendToBackend(tx.hash);
@@ -130,13 +130,15 @@ export const TransactionModal = ({ address, tAmount, currency }) => {
 
     const sendToBackend = async (txHash) => {
         // Send the data to the backend API
+        const formattedAmount = Number(tAmount).toFixed(18);
+        const token = 10000;
         const jsonData = {
             wallet_address: address,
             name: name,
             email: email,
             currency: currency,
             tx_hash: txHash,
-            amount: amount,
+            amount: formattedAmount,
             allocated_tokens: token,
         };
         console.log("sendToBackend",jsonData);
