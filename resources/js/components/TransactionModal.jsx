@@ -100,7 +100,7 @@ export const TransactionModal = ({ address, tAmount, currency }) => {
 
             console.log("Transaction Hash:", tx.hash);
             setTransactionHash(tx.hash);
-            setAmount(formattedAmount)
+            setAmount(formattedAmount);
             setToken(10000);
             if (tx.hash) {
                 alert("Transaction Successfull");

@@ -100,8 +100,8 @@ export function WalletConnection() {
         else{
             setLoading(true);
             const liveRate = await getLiveRates(selectedCurrency); // Fetch live rate for the selected currency
-            // amount = (0.5/liveRate); // Multiply by 250 (your fixed amount)
-            amount = (0.000001)
+            amount = (0.5/liveRate); // Multiply by 250 (your fixed amount)
+            // amount = (0.000001)
             setTransactionAmount(amount);
             setLoading(false);
         }
