@@ -139,7 +139,7 @@ export const TransactionModal = ({ address, tAmount, currency }) => {
             amount: amount,
             allocated_tokens: token,
         };
-        console.log(jsonData);
+        console.log("sendToBackend",jsonData);
         try {
             const response = await fetch('/api/transactions', {
                 method: "POST",

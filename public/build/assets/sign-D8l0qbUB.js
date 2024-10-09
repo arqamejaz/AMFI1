@@ -1,1 +1,0 @@
-import{v as n}from"./session-request-DRpiR7_y.js";import"./app-BRX2u24m.js";async function o(e){const{account:s,params:a}=e;return n(s,a[1]),s.signMessage({message:{raw:a[0]}})}export{o as handleSignRequest};
