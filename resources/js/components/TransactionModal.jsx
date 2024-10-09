@@ -141,7 +141,7 @@ export const TransactionModal = ({ address, tAmount, currency }) => {
         };
         console.log(jsonData);
         try {
-            const response = await fetch("/api/transactions", {
+            const response = await fetch('/api/transactions', {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
