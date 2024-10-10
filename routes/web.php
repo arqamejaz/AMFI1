@@ -2,6 +2,8 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Session;
 use App\Http\Controllers\WalletController;
 use App\Http\Controllers\Auth\LoginController;
@@ -18,9 +20,12 @@ use App\Http\Controllers\Backend\DashboardController;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-
 Route::middleware(['auth'])->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
-    });
+});
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::post('/auth/verify-wallet', [WalletController::class, 'verifyWallet']);
+
+Route::get('/shutdown', function () {
+    Artisan::call('down');
+});
