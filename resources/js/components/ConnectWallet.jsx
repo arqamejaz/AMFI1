@@ -53,7 +53,7 @@ const allChanis ={
 }
 
 export function WalletConnection() {
-    const [currency, setCurrency] = useState(1)
+    const [currency, setCurrency] = useState("")
     const [chainObject, setChainObject] = useState(defaultChain)
     const [address, setAddress] = useState(null); // For storing the connected wallet address
     const [loading, setLoading] = useState(false);
@@ -93,7 +93,7 @@ export function WalletConnection() {
         let amount = null;
         if (selectedCurrency === "USDT" || selectedCurrency === "USDC"){
             setLoading(true);
-            amount = (0.001); // Multiply by 250 (your fixed amount)
+            amount = (0.01); // Multiply by 250 (your fixed amount)
             setTransactionAmount(amount);
             setLoading(false);
         }

@@ -66,8 +66,8 @@
                                 <li><a href="#about">About</a></li>
                                 <li><a href="#services">Services</a></li>
                                 <li><a href="#roadmap">Roadmap</a></li>
-                                <li><a href="{{ url('frontend/img/pitchdeck.pdf') }}" target="_blank">Pitch Deck</a></li>
-                                <li><a href="https://automated-meta-finance.gitbook.io/amfi-whitepaper" target="_blank">White Paper</a></li>
+                                <li><a href="{{ url('frontend/img/pitchdeck.pdf') }}" target="_blank" rel="noopener noreferrer">Pitch Deck</a></li>
+                                <li><a href="https://automated-meta-finance.gitbook.io/amfi-whitepaper" target="_blank" rel="noopener noreferrer">White Paper</a></li>
                                 <li><a href="#contact">Contact</a></li>
                             </ul>
 
@@ -123,8 +123,8 @@
                                 finance. Experience the power of AI, Metaverse and decentralized finance all in one
                                 platform.</p>
                             <div class="dream-btn-group wow fadeInUp mb-30" data-wow-delay="0.4s">
-                                <a href="https://automated-meta-finance.gitbook.io/amfi-whitepaper " class="btn dream-btn mr-3">White Paper</a>
-                                <a href="{{ url('frontend/img/pitchdeck.pdf') }}" class="btn dream-btn" target="_blank">Pitch Deck</a>
+                                <a href="https://automated-meta-finance.gitbook.io/amfi-whitepaper" target="_blank" class="btn dream-btn mr-3" rel="noopener noreferrer">White Paper</a>
+                                <a href="{{ url('frontend/img/pitchdeck.pdf') }}" class="btn dream-btn" target="_blank" rel="noopener noreferrer">Pitch Deck</a>
                             </div>
                         </div>
                     </div>
@@ -146,7 +146,7 @@
 
     <div class="slider-container">
         <div class="slider">
-        <h5 class="mt-40" style="color: white">AMFI Partners</h5>
+        <h5 class="mt-40" style="color: white">Web3 Partners</h5>
           <img src="{{ url('frontend/img/slider/Thirdweb.png') }}" alt="Image 1">
           <img src="{{ url('frontend/img/slider/MetaMask.png') }}" alt="Image 2">
           <img src="{{ url('frontend/img/slider/Trustwallet.png') }}" alt="Image 3">
@@ -1793,19 +1793,19 @@
                         <div class="contact_info_area d-sm-flex justify-content-evenly">
                             <div class="contact_info text-center wow fadeInUp" data-wow-delay="0.2s">
                                 <h5>Links</h5>
-                                <a href="">
+                                <a href="#home">
                                     <p>Home</p>
                                 </a>
-                                <a href="">
+                                <a href="#about">
                                     <p>About</p>
                                 </a>
-                                <a href="">
+                                <a href="#services">
                                     <p>Services</p>
                                 </a>
-                                <a href="">
+                                <a href="#roadmap">
                                     <p>Roadmap</p>
                                 </a>
-                                <a href="">
+                                <a href="https://automated-meta-finance.gitbook.io/amfi-whitepaper" target="_blank" rel="noopener noreferrer">
                                     <p>Whitepaper</p>
                                 </a>
                             </div>
