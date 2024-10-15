@@ -226,7 +226,7 @@ export function WalletConnection() {
             <link rel="stylesheet" href="/frontend/css/style.css" />
             <div className="counter-down">
                 <div className="content">
-                    <div className="start-soon">STARTING ON 25TH OCTOBER 2024</div>
+                    <div className="start-soon">COMING SOON</div>
                     <div className="counterdown-content">
                         <div className="amfi-price">
                             <div className="live-status">
