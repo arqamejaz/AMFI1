@@ -226,11 +226,12 @@ export function WalletConnection() {
             <link rel="stylesheet" href="/frontend/css/style.css" />
             <div className="counter-down">
                 <div className="content">
+                    <div className="start-soon">Coming Soon</div>
                     <div className="counterdown-content">
                         <div className="amfi-price">
                             <div className="live-status">
-                                <span className="live-text">Seed Round is live</span>
-                                <span className="blinking-dot"></span>
+                                <span className="live-text">Seed Round will Live Soon</span>
+                                {/* <span className="blinking-dot"></span> */}
                             </div>
                             <div className="">Target: <strong>$582,750</strong></div>
                             <h1>1 AMFI = $0.025</h1>
@@ -293,9 +294,12 @@ export function WalletConnection() {
                                 <a href="#" className="dream-btn" data-bs-toggle="modal"
                                     data-bs-target="#seedRoundModal">Join Whitelist</a>
                             </div>
+                            <div className=" wow fadeInUp">
+                                <a href="#" className="dream-btn">Connect Wallet</a>
+                            </div>
                             <div className="text-right" >
                                 <div>
-                                    <ConnectButton
+                                    {/* <ConnectButton
                                         client={client}
                                         chain={chainObject}
                                         wallets={wallets}
@@ -319,7 +323,7 @@ export function WalletConnection() {
                                         onConnect={(walletData) => handleConnect(walletData)}
                                         onDisconnect={handleDisconnect}
                                         onSwitch={(walletData) => handleSwitch(walletData)}
-                                    />
+                                    /> */}
                                     {/* <ConnectEmbed client={client} wallets={wallets} /> */}
                                 </div>
                             </div>
