@@ -93,15 +93,15 @@ export function WalletConnection() {
         let amount = null;
         if (selectedCurrency === "USDT" || selectedCurrency === "USDC"){
             setLoading(true);
-            amount = (0.01); // Multiply by 250 (your fixed amount)
+            amount = (250); // Multiply by 250 (your fixed amount)
             setTransactionAmount(amount);
             setLoading(false);
         }
         else{
             setLoading(true);
             const liveRate = await getLiveRates(selectedCurrency); // Fetch live rate for the selected currency
-            // amount = (0.5/liveRate); // Multiply by 250 (your fixed amount)
-            amount = (0.000001)
+            amount = (250/liveRate); // Multiply by 250 (your fixed amount)
+            // amount = (0.000001)
             setTransactionAmount(amount);
             setLoading(false);
         }
@@ -226,7 +226,7 @@ export function WalletConnection() {
             <link rel="stylesheet" href="/frontend/css/style.css" />
             <div className="counter-down">
                 <div className="content">
-                    <div className="start-soon">Coming Soon</div>
+                    <div className="start-soon">STARTING ON 25TH OCTOBER 2024</div>
                     <div className="counterdown-content">
                         <div className="amfi-price">
                             <div className="live-status">
