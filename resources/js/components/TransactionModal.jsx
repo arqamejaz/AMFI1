@@ -7,7 +7,7 @@ import { useNavigate } from "react-router-dom";
 // import WalletConnectProvider from "@walletconnect/web3-provider";
 
 
-export const TransactionModal = ({ address, tAmount, currency }) => {
+export const TransactionModal = ({ address, tAmount, currency, verifyWalletAddress }) => {
     const [transactionHash, setTransactionHash] = useState(null);
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
@@ -108,7 +108,7 @@ export const TransactionModal = ({ address, tAmount, currency }) => {
             }
         } catch (error) {
             const balance = await signer.getBalance();
-            const tBalance= ethers.utils.formatEther(balance);
+            const tBalance = ethers.utils.formatEther(balance);
             setCurrentBalance(tBalance);
 
 
@@ -123,7 +123,7 @@ export const TransactionModal = ({ address, tAmount, currency }) => {
             }
 
             setErrorMessage(errorMessage); // Store the error message
-            console.log("check error",errorMessage);
+            console.log("check error", errorMessage);
             showModal(); // Programmatically show the modal
         }
     };
@@ -141,7 +141,7 @@ export const TransactionModal = ({ address, tAmount, currency }) => {
             amount: tAmount,
             allocated_tokens: token,
         };
-        console.log("sendToBackend",jsonData);
+        console.log("sendToBackend", jsonData);
         try {
             const response = await fetch('/api/transactions', {
                 method: "POST",
@@ -155,26 +155,7 @@ export const TransactionModal = ({ address, tAmount, currency }) => {
             if (result.success) {
                 alert("Transaction saved successfully on the backend!");
                 sessionStorage.setItem('walletAddress', address);
-                try {
-                    const response = await fetch('/auth/verify-wallet', {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json',
-                            'Accept': 'application/json',
-                        },
-                        body: JSON.stringify({ address }),
-                    });
-                    const data = await response.json();
-                    if (data.success) {
-                        // Handle dashboard access, perhaps redirect to the dashboard or set a session
-                        // window.location.href = "/dashboard";
-                        console.log(data);
-                    } else {
-                        console.log('Wallet not found in the database');
-                    }
-                } catch (error) {
-                    console.error('Error verifying wallet address:', error);
-                }
+                verifyWalletAddress(address);
             } else {
                 alert("Failed to save transaction on backend.");
             }
@@ -190,80 +171,80 @@ export const TransactionModal = ({ address, tAmount, currency }) => {
 
     return createPortal(
         <>
-         {address ? (
-        <div className="modal fade" id="seedRoundModal" tabIndex="-1" aria-labelledby="seedRoundModalLabel" aria-hidden="true"  >
-            <div className="modal-dialog modal-lg">
-                <div className="modal-content">
-                    <div className="modal-header">
-                        <h5 className="modal-title" id="seedRoundModalLabel">Seed Round Whitelist</h5>
-                        <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div className="modal-body">
-                        <form>
-                            <p>Thank you for your interest in AMFI Project! Please fill out the form below to apply for our seed round whitelist. By participating in seedround you are expressing your intent to purchase AMFI token at an early stage, subject to approval.</p>
-                            <div className="form-group">
-                                <label>Name: </label>
-                                <input className="form-control" type="text" onChange={(e) => setName(e.target.value)} placeholder="Enter your name" required />
+            {address ? (
+                <div className="modal fade" id="seedRoundModal" tabIndex="-1" aria-labelledby="seedRoundModalLabel" aria-hidden="true"  >
+                    <div className="modal-dialog modal-lg">
+                        <div className="modal-content">
+                            <div className="modal-header">
+                                <h5 className="modal-title" id="seedRoundModalLabel">Seed Round Whitelist</h5>
+                                <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
-                            <div className="form-group">
-                                <label>Email: </label>
-                                <input className="form-control" type="email" onChange={(e) => setEmail(e.target.value)} placeholder="info@amfi.com" required />
-                            </div>
-                            <div className="form-group">
-                                <label>Are you an accredited investor? </label>
-                                <select className="form-control" name="question" id="question" required>
-                                    <option value="yes">Yes</option>
-                                    <option value="no">No</option>
-                                </select>
-                            </div>
-                            <div className="form-check">
-                                <input className="form-check-input" type="checkbox" value="" id="term&cond" required />
-                                <label className="form-check-label" htmlFor="term&cond">
-                                    Do you agree that token purchase in the seed round will be claimed after presale ends?
-                                </label>
-                            </div>
-                            <br />
-                                <div>
+                            <div className="modal-body">
+                                <form>
+                                    <p>Thank you for your interest in AMFI Project! Please fill out the form below to apply for our seed round whitelist. By participating in seedround you are expressing your intent to purchase AMFI token at an early stage, subject to approval.</p>
+                                    <div className="form-group">
+                                        <label>Name: </label>
+                                        <input className="form-control" type="text" onChange={(e) => setName(e.target.value)} placeholder="Enter your name" required />
+                                    </div>
+                                    <div className="form-group">
+                                        <label>Email: </label>
+                                        <input className="form-control" type="email" onChange={(e) => setEmail(e.target.value)} placeholder="info@amfi.com" required />
+                                    </div>
+                                    <div className="form-group">
+                                        <label>Are you an accredited investor? </label>
+                                        <select className="form-control" name="question" id="question" required>
+                                            <option value="yes">Yes</option>
+                                            <option value="no">No</option>
+                                        </select>
+                                    </div>
+                                    <div className="form-check">
+                                        <input className="form-check-input" type="checkbox" value="" id="term&cond" required />
+                                        <label className="form-check-label" htmlFor="term&cond">
+                                            Do you agree that token purchase in the seed round will be claimed after presale ends?
+                                        </label>
+                                    </div>
+                                    <br />
+                                    <div>
 
-                                    <p>Wallet Address: {address}</p>
-                                    <p>curr: {tAmount}</p>
-                                    <button type="button" className="btn btn-primary" onClick={sendTransaction}>Submit & Pay</button>
-                                </div>
-                        </form>
+                                        <p>Wallet Address: {address}</p>
+                                        <p>curr: {tAmount}</p>
+                                        <button type="button" className="btn btn-primary" onClick={sendTransaction}>Submit & Pay</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            ) : (
+                <div className="modal fade" id="seedRoundModal" tabIndex="-1" aria-labelledby="seedRoundModalLabel" aria-hidden="true"  >
+                    <div className="modal-dialog modal-lg">
+                        <div className="modal-content">
+                            <div className="modal-header">
+                                <h5 className="modal-title" id="noAddressModalLabel">No Wallet Connected</h5>
+                                <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div className="modal-body">
+                                <p>Please connect your wallet to apply for the seed round whitelist and participate in the token purchase.</p>
+                                {/* <button type="button" className="btn btn-primary" onClick={connectWallet}>Connect Wallet</button> */}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            )}
+            <div className="modal fade" id="errorModal" tabIndex="-1" aria-labelledby="errorModalLabel" aria-hidden="true">
+                <div className="modal-dialog">
+                    <div className="modal-content" style={{ wordWrap: "break-word", maxWidth: "90%", maxHeight: "80vh", overflowY: "auto", padding: "20px", scrollbarWidth: "none", scrollbarColor: "#6c757d #f1f1f1" }}>
+                        <div className="modal-header">
+                            <h5 className="modal-title" id="errorModalLabel">Transaction Error</h5>
+                            <button type="button" className="close" data-dismiss="modal" aria-label="Close" onClick={() => setErrorMessage('')}><span aria-hidden="true">&times;</span></button>
+                        </div>
+                        <div className="modal-body">
+                            {/* Display the error message */}
+                            <p style={{ whiteSpace: 'pre-wrap', fontSize: '13px', maxWidth: '100%' }}>{errorMessage}</p>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-        ):(
-        <div className="modal fade" id="seedRoundModal" tabIndex="-1" aria-labelledby="seedRoundModalLabel" aria-hidden="true"  >
-            <div className="modal-dialog modal-lg">
-            <div className="modal-content">
-                <div className="modal-header">
-                <h5 className="modal-title" id="noAddressModalLabel">No Wallet Connected</h5>
-                <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div className="modal-body">
-                <p>Please connect your wallet to apply for the seed round whitelist and participate in the token purchase.</p>
-                {/* <button type="button" className="btn btn-primary" onClick={connectWallet}>Connect Wallet</button> */}
-                </div>
-            </div>
-            </div>
-        </div>
-        )}
-        <div className="modal fade" id="errorModal" tabIndex="-1" aria-labelledby="errorModalLabel" aria-hidden="true">
-            <div className="modal-dialog">
-                <div className="modal-content" style={{wordWrap: "break-word", maxWidth: "90%", maxHeight: "80vh", overflowY: "auto", padding: "20px", scrollbarWidth: "none", scrollbarColor: "#6c757d #f1f1f1"}}>
-                    <div className="modal-header">
-                        <h5 className="modal-title" id="errorModalLabel">Transaction Error</h5>
-                        <button type="button" className="close" data-dismiss="modal" aria-label="Close" onClick={() => setErrorMessage('')}><span aria-hidden="true">&times;</span></button>
-                    </div>
-                    <div className="modal-body">
-                        {/* Display the error message */}
-                        <p style={{ whiteSpace: 'pre-wrap', fontSize: '13px', maxWidth: '100%' }}>{errorMessage}</p>
-                    </div>
-                </div>
-            </div>
-        </div>
         </>
         , document.body)
 }

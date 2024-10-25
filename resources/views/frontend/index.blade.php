@@ -1788,11 +1788,11 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-12 col-md-7">
+                    {{-- <div class="col-12 col-md-7">
                         <!-- Content Info -->
                         <div class="contact_info_area d-sm-flex justify-content-evenly">
                             <div class="contact_info text-center wow fadeInUp" data-wow-delay="0.2s">
-                                <h5>Links</h5>
+                                <h5 style="margin: 0;">Links</h5>
                                 <a href="#home">
                                     <p>Home</p>
                                 </a>
@@ -1811,7 +1811,7 @@
                             </div>
                             <!-- Content Info -->
                             <div class="contact_info text-center wow fadeInUp" data-wow-delay="0.3s">
-                                <h5>Help</h5>
+                                <h5 style="margin: 0;">Help</h5>
                                 <a href="" data-bs-toggle="modal" data-bs-target="#largeModal">
                                     <p>How to buy?</p>
                                 </a>
@@ -1824,7 +1824,7 @@
                             </div>
                             <!-- Content Info -->
                             <div class="contact_info text-center wow fadeInUp" data-wow-delay="0.4s">
-                                <h5>Social Media</h5>
+                                <h5 style="margin: 0;">Social Media</h5>
                                 <a href="https://x.com/amfi_official" target="_blank"><p>X (Twitter)</p></a>
                                 <a href=" https://t.me/amfi_official" target="_blank"><p><i class="fa fa-telegram mr-2" aria-hidden="true"></i>Telegram</p></a>
                                 <a href="https://discord.com/channels/1290379401774628906/1290384602728497277" target="_blank"><p><img src="{{ url('frontend/img/discord.svg') }}" class="mr-2" style="height: 15px; width: 15px;">Discord</p></a>
@@ -1833,17 +1833,62 @@
 
                             </div>
                         </div>
+                    </div> --}}
+                    <div class="col-12 col-md-7">
+                        <!-- Content Info -->
+                        <div class="contact_info_area d-flex justify-content-evenly flex-wrap">
+                            <!-- Links Section -->
+                            <div class="contact_info text-center wow fadeInUp" data-wow-delay="0.2s">
+                                <h5 style="margin: 0;">Links</h5>
+                                <a href="#home"><p>Home</p></a>
+                                <a href="#about"><p>About</p></a>
+                                <a href="#services"><p>Services</p></a>
+                                <a href="#roadmap"><p>Roadmap</p></a>
+                                <a href="https://automated-meta-finance.gitbook.io/amfi-whitepaper"
+                                   target="_blank" rel="noopener noreferrer">
+                                   <p>Whitepaper</p>
+                                </a>
+                            </div>
+
+                            <!-- Help Section -->
+                            <div class="contact_info text-center wow fadeInUp" data-wow-delay="0.3s">
+                                <h5 style="margin: 0;">Help</h5>
+                                <a href="" data-bs-toggle="modal" data-bs-target="#largeModal"><p>How to buy?</p></a>
+                                <a href=""><p>FAQ's</p></a>
+                                <a href=""><p>Contact Us</p></a>
+                            </div>
+
+                            <!-- Social Media Section -->
+                            <div class="contact_info text-center wow fadeInUp" data-wow-delay="0.4s">
+                                <h5 style="margin: 0;">Social Media</h5>
+                                <a href="https://x.com/amfi_official" target="_blank"><p>X (Twitter)</p></a>
+                                <a href="https://t.me/amfi_official" target="_blank">
+                                    <p><i class="fa fa-telegram mr-2"></i>Telegram</p>
+                                </a>
+                                <a href="https://discord.com/channels/1290379401774628906/1290384602728497277" target="_blank">
+                                    <p><img src="{{ url('frontend/img/discord.svg') }}" class="mr-2"
+                                            style="height: 15px; width: 15px;">Discord</p>
+                                </a>
+                                <a href="https://youtube.com/@amfi_official?si=yQFV5SPdQ7bUu_2A" target="_blank">
+                                    <p><i class="fa fa-youtube mr-2"></i>Youtube</p>
+                                </a>
+                                <a href="https://medium.com/@amfi.ai/amfi-the-future-of-digital-finance-7d67765927f9" target="_blank">
+                                    <p><i class="fa fa-medium mr-2"></i>Medium</p>
+                                </a>
+                            </div>
+                        </div>
                     </div>
+
                 </div>
             </div>
         </div>
         <div class="row align-items-end" style="background-color: black; border-top: 1px solid white">
-            <div class="col-6 mt-2">
+            <div class="col-12 col-md-6 mt-2">
                 <p class="text-center">
                     © 2024 AMFI, All rights reserved.
                 </p>
             </div>
-            <div class="col-6 mt-2">
+            <div class="col-12 col-md-6 mt-2">
                 <p class="text-center">
                     <a href="https://automated-meta-finance.gitbook.io/amfi-whitepaper/privacy-policy" target="_blank">Privacy Policy</a>
                     <a href="https://automated-meta-finance.gitbook.io/amfi-whitepaper/terms-of-services" target="_blank" class="pl-5">Terms & Services</a>
