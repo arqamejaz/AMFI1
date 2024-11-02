@@ -68,12 +68,14 @@ export const TransactionModal = ({ address, tAmount, currency, verifyWalletAddre
         // }
 
         // window.ethereum.enable().then(provider = new ethers.providers.Web3Provider(window.ethereum));
+
         const provider1 = new ethers.providers.Web3Provider(provider);
         const signer = provider1.getSigner();
 
         const formattedAmount = Number(tAmount).toFixed(18);
+        const usdtcAmount = Number(tAmount);
         let transaction;
-        const recipient = "0x143c5eC14522d150F4F5E1ddCA7E90BA42dbD438"; // Replace with actual recipient address
+        const recipient = "0x143c5eC14522d150F4F5E1ddCA7E90BA42dbD438";
         if (currency === "ETH" || currency === "BNB") {
             // For Ethereum (ETH) and Binance (BNB) transaction
             transaction = {
@@ -84,14 +86,17 @@ export const TransactionModal = ({ address, tAmount, currency, verifyWalletAddre
             // For USDT or USDC on BSC, you will need to use the ERC20 transfer method
             const tokenAddress = currency === "USDT"
                 ? "0x55d398326f99059ff775485246999027b3197955"
-                : "0x8ac76a51cc950d9822d68b83fe1ad97b32cd580d"; // Replace with actual token contract addresses
+                : "0x8ac76a51cc950d9822d68b83fe1ad97b32cd580d";
             // console.log(currency);
             const tokenABI = [
                 "function transfer(address to, uint amount) returns (bool)"
             ];
-
             const tokenContract = new ethers.Contract(tokenAddress, tokenABI, signer);
-            transaction = await tokenContract.transfer(recipient, ethers.utils.parseUnits(formattedAmount.toString(), 18));
+            const tokenAmount = ethers.utils.parseUnits(usdtcAmount.toString())
+            console.log("Attempting token transfer:", tokenAmount.toString());
+            const gasLimit = 21000; // Adjust as needed
+            const gasPrice = ethers.utils.parseUnits("6", "gwei");
+            transaction = await tokenContract.transfer(recipient, tokenAmount);
         }
 
         try {

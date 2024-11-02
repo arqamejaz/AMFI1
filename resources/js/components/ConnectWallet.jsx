@@ -74,7 +74,8 @@ export function WalletConnection() {
     // Handle Wallet Disconnect
     const handleDisconnect = () => {
         setWalAddress(null); // Clear the address when disconnected
-        sessionStorage.removeItem("walletAddress"); // Optionally clear session storage
+        const walletAddress = sessionStorage.removeItem("walletAddress"); // Optionally clear session storage
+        verifyWalletAddress(walletAddress);
         console.log("Disconnected wallet");
     };
 
@@ -93,15 +94,16 @@ export function WalletConnection() {
         let amount = null;
         if (selectedCurrency === "USDT" || selectedCurrency === "USDC") {
             setLoading(true);
-            amount = (250); // Multiply by 250 (your fixed amount)
+            // amount = (250); // Multiply by 250 (your fixed amount)
+            amount = (1); // Multiply by 250 (your fixed amount)
             setTransactionAmount(amount);
             setLoading(false);
         }
         else {
             setLoading(true);
             const liveRate = await getLiveRates(selectedCurrency); // Fetch live rate for the selected currency
-            amount = (0.5/liveRate); // Multiply by 250 (your fixed amount)
-            // amount = (0.000001)
+            // amount = (0.5/liveRate); // Multiply by 250 (your fixed amount)
+            amount = (0.000001)
             setTransactionAmount(amount);
             setLoading(false);
         }
